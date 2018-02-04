@@ -1,0 +1,30 @@
+.jumbotron {
+	text-align:center;
+	background:darkblue;
+	color:lightgrey;
+}		
+
+.container {
+	width:960px;
+
+}
+
+h4 {
+	margin:auto;
+}
+
+.panel-heading{
+	height:40px;
+	width:100%;
+
+}
+
+th {
+	height:20px;
+	border-radius:5px;
+	text-align:center;
+}
+
+td {
+	text-align:center;
+}
