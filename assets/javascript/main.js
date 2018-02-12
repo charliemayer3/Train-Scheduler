@@ -20,7 +20,7 @@ $("#add-train-btn").on("click", function(event) {
   //grabs new train info
   var trainName = $("#train-name-input").val().trim();
   var trainDestination = $("#destination-input").val().trim();
-  var trainFirst = moment($("#first-input").val().trim(), "hh:mm").format("X");
+  var trainFirst = $("#first-input").val().trim();
   var trainFrequency = $("#frequency-input").val().trim();
 
   console.log(trainName)
@@ -74,7 +74,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   console.log(trainFrequency);
 
   //subtracting a year from my first train time.  code wasn't working properly withouth this.
-  var firstTrainConverted = moment(trainFirst, "hh:mm").subtract(1, "years");
+  var firstTrainConverted = moment(trainFirst, "HH:mm").subtract(1, "years");
   console.log(firstTrainConverted);
 
   //sets the current time as a variable
@@ -82,7 +82,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
   //finds the difference between the current time and the time of the first train in minutes
-  var timeDiff = moment().diff(moment(firstTrainConverted), "minutes");
+  var timeDiff = currentTime.diff(moment(firstTrainConverted), "minutes");
   console.log("Time Difference: " + timeDiff);
 
   //take the time difference between the first train time and now, and then dives it by the train frequency.  Stores the remainder as a variable
@@ -95,7 +95,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   //finds the time that the next train arrives by taking current time and adding the minutesUntilArrival
   var nextTrain = moment().add(minutesUntilArrival, "minutes").format("hh:mm A");
-  console.log("Arrival Time: " + moment(nextTrain).format("hh:mm A"))
+  console.log("Arrival Time: " + nextTrain)  //.format("hh:mm A"))
 
   //adds each train to the train table
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
